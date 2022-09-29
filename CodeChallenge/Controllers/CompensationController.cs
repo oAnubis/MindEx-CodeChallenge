@@ -19,7 +19,7 @@ namespace CodeChallenge.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateCompensationById([FromBody] Compensation compensation)
+        public IActionResult CreateCompensation([FromBody] Compensation compensation)
         {
             _logger.LogDebug($"Received compensation create request for {compensation.Employee.FirstName} {compensation.Employee.LastName}");
 

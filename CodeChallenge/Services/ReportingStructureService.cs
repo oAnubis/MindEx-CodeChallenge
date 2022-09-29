@@ -10,9 +10,9 @@ namespace CodeChallenge.Services
         private readonly IEmployeeRepository _employeeRepository;
         private readonly ILogger<ReportingStructureService> _logger;
 
-        public ReportingStructureService(ILogger<ReportingStructureService> logger, IEmployeeRepository reportingRepository)
+        public ReportingStructureService(ILogger<ReportingStructureService> logger, IEmployeeRepository employeeRepository)
         {
-            _employeeRepository = reportingRepository;
+            _employeeRepository = employeeRepository;
             _logger = logger;
         }
 

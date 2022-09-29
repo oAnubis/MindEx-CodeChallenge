@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace CodeChallenge.Repositories
 {
@@ -17,6 +18,7 @@ namespace CodeChallenge.Repositories
         public EmployeeRepository(ILogger<IEmployeeRepository> logger, EmployeeContext employeeContext)
         {
             _employeeContext = employeeContext;
+            _employeeContext.Employees.Load();
             _logger = logger;
         }
 
@@ -57,11 +59,11 @@ namespace CodeChallenge.Repositories
             foreach (var employee in employeeDictionary.Values)
             {
                 if (!id.Equals(employee.EmployeeId))
-                    report.employee = employeeDictionary[id];
+                    report.Employee = employeeDictionary[id];
             }
 
             // Counts the number of reports for the passed in employee id and assigns that value to the ReportingStructure numberOfReport property.
-            report.numberOfReports = CountReports(report.employee);
+            report.NumberOfReports = CountReports(report.Employee);
 
             // returns the filled out report
             return report;
@@ -72,7 +74,7 @@ namespace CodeChallenge.Repositories
             // Sets the target employee to equal the id passed
 
             // If the employee does not have any direct reports (which show as null) this will set the DirectReport list to an empty list.
-            // I did this because it was printing that property as null, I figured this was a simple method to fix that issue.
+            // I did this because it was printing that property as null, I figured this was a simple method to display an empty list instead
             // Again, I am extremely interested in learning if this is the proper approach, or if there exists a better method to achieve the same results.
             if (employee.DirectReports == null)
             {

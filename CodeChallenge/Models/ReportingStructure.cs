@@ -2,8 +2,20 @@
 {
     public class ReportingStructure
     {
-        public int numberOfReports { get; set; }
+        private int numberOfReports;
 
-        public Employee employee { get; set; }
+        private Employee employee;
+
+        public int NumberOfReports
+        {
+            get { return numberOfReports; }
+            set { numberOfReports = value; }
+        }
+
+        public Employee Employee
+        {
+            get { return employee; }
+            set { employee = value; }
+        }
     }
 }

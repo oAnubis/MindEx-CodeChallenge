@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using CodeChallenge.Data;
@@ -23,6 +24,7 @@ namespace CodeChallenge.Repositories
 
         public Compensation Create(Compensation compensation)
         {
+            compensation.CompensationId = Guid.NewGuid().ToString();
             _employeeContext.Compensation.Add(compensation);
             return compensation;
         }

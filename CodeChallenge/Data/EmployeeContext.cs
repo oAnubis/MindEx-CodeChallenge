@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace CodeChallenge.Data
 {
+    // This is called from the Employee Repository to get access to the DbSet
     public class EmployeeContext : DbContext
     {
         public EmployeeContext(DbContextOptions<EmployeeContext> options) : base(options)

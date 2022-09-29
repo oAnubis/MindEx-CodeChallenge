@@ -7,10 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CodeChallenge.Services
 {
-    public interface IEmployeeService
+    public interface IReportingStructureService
     {
-        Employee GetById(String id);
-        Employee Create(Employee employee);
-        Employee Replace(Employee originalEmployee, Employee newEmployee);
+        ReportingStructure GetById(string id);
     }
 }

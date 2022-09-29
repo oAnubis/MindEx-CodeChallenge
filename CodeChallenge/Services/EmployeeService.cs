@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CodeChallenge.Models;
 using Microsoft.Extensions.Logging;
 using CodeChallenge.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace CodeChallenge.Services
 {

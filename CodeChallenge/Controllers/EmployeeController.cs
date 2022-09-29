@@ -1,17 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CodeChallenge.Services;
 using CodeChallenge.Models;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Serialization;
 
 namespace CodeChallenge.Controllers
 {
     [ApiController]
     [Route("api/employee")]
-    public class EmployeeController : ControllerBase
+    public class EmployeeController : Controller
     {
         private readonly ILogger _logger;
         private readonly IEmployeeService _employeeService;
@@ -44,6 +47,8 @@ namespace CodeChallenge.Controllers
 
             return Ok(employee);
         }
+
+        
 
         [HttpPut("{id}")]
         public IActionResult ReplaceEmployee(String id, [FromBody]Employee newEmployee)

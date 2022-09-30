@@ -86,11 +86,11 @@ namespace CodeChallenge.Tests.Integration
 
             var expectedCompensationId = "32784782hh828";
 
-// Execute
+            // Execute
             var getRequestTask = _httpClient.GetAsync($"api/compensation/{employeeId}");
             var response = getRequestTask.Result;
 
-// Assert
+            // Assert
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             var compensation = response.DeserializeContent<Compensation>();
             Assert.AreEqual(expectedSalary, compensation.Salary);

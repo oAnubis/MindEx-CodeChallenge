@@ -19,7 +19,10 @@ namespace CodeChallenge.Services
         public Compensation Create(Compensation compensation)
         {
             if (compensation != null)
-                return _compensationRepository.Create(compensation);
+            {
+                _compensationRepository.Create(compensation);
+                SaveAsync().Wait();
+            }
 
             return null;
             

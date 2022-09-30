@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 
 namespace CodeChallenge.Data
 {
+    // Class to seed the CompensationDB
     public class TestCompensationSeeder
     {
         private CompensationContext _compensationContext;

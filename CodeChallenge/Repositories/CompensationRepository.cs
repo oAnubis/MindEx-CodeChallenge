@@ -23,6 +23,7 @@ namespace CodeChallenge.Repositories
 
         public Compensation Create(Compensation compensation)
         {
+            // Generate a unique Id for the new compensation (would allow future tracking in databases, this acts as the primary key for the new compensation)
             compensation.CompensationId = Guid.NewGuid().ToString();
             _compensationContext.Compensation.Add(compensation);
             return compensation;
@@ -30,6 +31,9 @@ namespace CodeChallenge.Repositories
 
         public Compensation GetCompensationById(string id)
         {
+            // This would allow multiple compensations for each employee and pull the most recent or current compensation.
+            // Could also add different methods with different linq queries to find later compensation, also possible to add
+            // the ability to list all compensations. Would be a fun exercise.
             return _compensationContext.Compensation.OrderByDescending(
                     c => c.EffectiveDate).FirstOrDefault(
                 c => c.Employee.EmployeeId == id);

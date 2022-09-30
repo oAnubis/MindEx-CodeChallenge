@@ -97,11 +97,6 @@ namespace CodeChallenge.Repositories
             return reportCount;
         }
 
-        public IEnumerable<Employee> GetAll()
-        {
-            return _employeeContext.Employees;
-        }
-
         public Task SaveAsync()
         {
             return _employeeContext.SaveChangesAsync();

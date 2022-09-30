@@ -23,6 +23,7 @@ namespace CodeChallenge.Config
 
             builder.UseEmployeeDB();
 
+            // Added to enable usage of the Compensation Database for seeding and testing purposes
             builder.UseCompensationDB();
 
             AddServices(builder.Services);
@@ -64,6 +65,7 @@ namespace CodeChallenge.Config
                 )).Seed().Wait();
         }
 
+        // Seeding the compensationDB, this enabled me to Unit Test the Get Action in the Compensation Controller
         private void SeedCompensationeDB()
         {
             new TestCompensationSeeder(

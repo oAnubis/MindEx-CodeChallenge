@@ -2,6 +2,8 @@
 {
     public class ReportingStructure
     {
+        // The instructions explicitly stated fields, not properties so I made these fields with getters and setters.
+
         private int numberOfReports;
 
         private Employee employee;

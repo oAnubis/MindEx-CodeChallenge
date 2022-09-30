@@ -16,5 +16,16 @@ namespace CodeChallenge.Config
                 options.UseInMemoryDatabase(DB_NAME);
             });
         }
+
+        private static readonly string DB2_NAME = "CompensationDB";
+        public static void UseCompensationDB(this WebApplicationBuilder builder)
+        {
+            builder.Services.AddDbContext<CompensationContext>(options =>
+            {
+                options.UseInMemoryDatabase(DB2_NAME);
+            });
+        }
+
+
     }
 }

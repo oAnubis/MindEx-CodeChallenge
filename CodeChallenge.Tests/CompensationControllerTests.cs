@@ -20,8 +20,7 @@ namespace CodeChallenge.Tests.Integration
     {
         private static HttpClient _httpClient;
         private static TestServer _testServer;
-        private DbSet<Employee> testSet;
-
+        
         [ClassInitialize]
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Style", "IDE0060:Remove unused parameter",
             Justification = "<Pending>")]
@@ -78,7 +77,25 @@ namespace CodeChallenge.Tests.Integration
         [TestMethod]
         public void GetCompensationById_Returns_Ok()
         {
+            // Arrange
+            var employeeId = "b7839309-3348-463b-a7e3-5de1c168beb3";
 
+            var expectedSalary = "87,765.48";
+
+            var expectedEffectiveDate = "11/25/1956";
+
+            var expectedCompensationId = "32784782hh828";
+
+// Execute
+            var getRequestTask = _httpClient.GetAsync($"api/compensation/{employeeId}");
+            var response = getRequestTask.Result;
+
+// Assert
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            var compensation = response.DeserializeContent<Compensation>();
+            Assert.AreEqual(expectedSalary, compensation.Salary);
+            Assert.AreEqual(expectedEffectiveDate, compensation.EffectiveDate);
+            Assert.AreEqual(expectedCompensationId, compensation.CompensationId);
         }
     }
 }

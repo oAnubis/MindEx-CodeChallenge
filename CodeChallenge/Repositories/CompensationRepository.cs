@@ -11,33 +11,33 @@ namespace CodeChallenge.Repositories
 {
     public class CompensationRepository : ICompensationRepository
     {
-        private readonly EmployeeContext _employeeContext;
+        private readonly CompensationContext _compensationContext;
 
         private readonly ILogger<ICompensationRepository> _logger;
 
-        public CompensationRepository(ILogger<ICompensationRepository> logger, EmployeeContext employeeContext)
+        public CompensationRepository(ILogger<ICompensationRepository> logger, CompensationContext compensationContext)
         {
-            _employeeContext = employeeContext;
-            _employeeContext.Employees.Load();
+            _compensationContext = compensationContext;
             _logger = logger;
         }
 
         public Compensation Create(Compensation compensation)
         {
             compensation.CompensationId = Guid.NewGuid().ToString();
-            _employeeContext.Compensation.Add(compensation);
+            _compensationContext.Compensation.Add(compensation);
             return compensation;
         }
 
         public Compensation GetCompensationById(string id)
         {
-            return _employeeContext.Compensation.SingleOrDefault(
+            return _compensationContext.Compensation.OrderByDescending(
+                    c => c.EffectiveDate).FirstOrDefault(
                 c => c.Employee.EmployeeId == id);
         }
 
         public Task SaveAsync()
         {
-            return _employeeContext.SaveChangesAsync();
+            return _compensationContext.SaveChangesAsync();
         }
     }
 }
